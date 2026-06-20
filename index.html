@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Excel Academy | Premier Secondary School</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Premium fonts: Outfit for navbar/logo, Inter for body remains -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1e293b;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: #f97316;
+            color: white;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            color: #0f172a;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: #f97316;
+            border-radius: 4px;
+        }
+        .text-center .section-title:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: #f97316;
+            border: none;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 40px;
+            color: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 6px 14px rgba(249, 115, 22, 0.25);
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #f97316;
+            padding: 10px 26px;
+            font-weight: 600;
+            border-radius: 40px;
+            color: #f97316;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-outline:hover {
+            background: #f97316;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Navbar - premium font (Outfit) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            font-family: 'Outfit', sans-serif;
+        }
+        .navbar.scrolled {
+            padding: 12px 5%;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+        }
+        .logo h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #0f172a;
+            font-family: 'Outfit', sans-serif;
+        }
+        .logo span {
+            color: #f97316;
+            font-weight: 800;
+        }
+        .navbar ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .navbar li a {
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            letter-spacing: -0.2px;
+            font-family: 'Outfit', sans-serif;
+        }
+        .navbar li a:hover {
+            color: #f97316;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #0f172a;
+        }
+        @media (max-width: 880px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 70px;
+                right: 5%;
+                width: 220px;
+                padding: 28px;
+                border-radius: 24px;
+                gap: 20px;
+                box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+                border: 1px solid #e2e8f0;
+            }
+            .navbar ul.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* HERO SLIDER - premium fade with Ken Burns */
+        .hero {
+            padding: 0;
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            min-height: 550px;
+            background: #0f172a;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            z-index: 1;
+        }
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75);
+            transition: transform 6s ease-out;
+        }
+        .slide.active .slide-bg {
+            transform: scale(1.05);
+        }
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 1;
+        }
+        .slide-content {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 8%;
+            transform: translateY(-50%);
+            max-width: 600px;
+            color: white;
+            text-align: left;
+            animation: fadeUp 0.9s ease-out;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(-50%);
+            }
+        }
+        .slide.active .slide-content {
+            animation: fadeUp 0.9s ease-out forwards;
+        }
+        .slide-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        .slide-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.8rem;
+            opacity: 0.95;
+            line-height: 1.5;
+            max-width: 90%;
+        }
+        .slide-content .btn-primary {
+            background: #f97316;
+            font-size: 1rem;
+            padding: 12px 32px;
+        }
+        /* Slider navigation dots */
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            z-index: 10;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .dot.active {
+            background: #f97316;
+            transform: scale(1.2);
+            width: 28px;
+            border-radius: 20px;
+        }
+        /* Responsive Hero */
+        @media (max-width: 880px) {
+            .hero-slider {
+                height: 70vh;
+                min-height: 500px;
+            }
+            .slide-content {
+                left: 5%;
+                right: 5%;
+                max-width: 90%;
+                text-align: center;
+            }
+            .slide-content h1 {
+                font-size: 2rem;
+            }
+            .slide-content p {
+                font-size: 0.95rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .slide-content .btn-primary {
+                padding: 10px 24px;
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 550px) {
+            .hero-slider {
+                height: 65vh;
+            }
+            .slide-content h1 {
+                font-size: 1.7rem;
+            }
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            background: #0f172a;
+            color: white;
+            padding: 50px 5%;
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-item h3 {
+            font-size: 2.4rem;
+            color: #f97316;
+            margin-bottom: 8px;
+        }
+        .stat-item p {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* About */
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+            padding: 80px 5%;
+            background: white;
+        }
+        .about-img {
+            flex: 1;
+            border-radius: 32px;
+            overflow: hidden;
+        }
+        .about-img img {
+            width: 100%;
+            display: block;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #0f172a;
+        }
+        .values {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .value-badge {
+            background: #fef3c7;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #b45309;
+            font-size: 0.85rem;
+        }
+
+        /* Programs */
+        .programs {
+            background: #f8fafc;
+            padding: 80px 5%;
+        }
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .program-card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+            border-color: #fed7aa;
+        }
+        .program-card i {
+            font-size: 2.5rem;
+            color: #f97316;
+            margin-bottom: 18px;
+        }
+        .program-card h3 {
+            margin-bottom: 12px;
+        }
+        .subjects {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #475569;
+            list-style: none;
+        }
+        .subjects li {
+            margin-bottom: 6px;
+        }
+
+        /* Facilities */
+        .facilities {
+            padding: 80px 5%;
+        }
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .facility-card {
+            border-radius: 24px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+        .facility-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        .facility-card h4 {
+            padding: 18px 18px 8px;
+        }
+        .facility-card p {
+            padding: 0 18px 20px;
+            color: #475569;
+        }
+
+        /* Admissions */
+        .admissions {
+            background: #fef9f0;
+            padding: 80px 5%;
+            text-align: center;
+        }
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin: 50px 0 40px;
+        }
+        .step {
+            background: white;
+            border-radius: 60px;
+            padding: 20px 35px;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            font-weight: 700;
+            border: 1px solid #fed7aa;
+        }
+        .step span {
+            background: #f97316;
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: inline-block;
+            line-height: 32px;
+            margin-right: 12px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 5%;
+            background: white;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .testimonial-card {
+            background: #f8fafc;
+            padding: 28px;
+            border-radius: 28px;
+            border-left: 6px solid #f97316;
+        }
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #334155;
+        }
+        .testimonial-card h4 {
+            color: #0f172a;
+        }
+        .testimonial-card span {
+            font-size: 0.85rem;
+            color: #f97316;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: #0f172a;
+            padding: 70px 5%;
+            text-align: center;
+            color: white;
+        }
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .cta-banner .btn-primary {
+            background: #f97316;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background-image: url(/image/background\ 22.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #cbd5e1;
+            padding: 50px 5% 30px;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .footer-col p, .footer-col a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+        }
+        .footer-col a:hover {
+            color: #f97316;
+        }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .social-icons i {
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .social-icons i:hover {
+            color: #f97316;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #1e293b;
+            font-size: 0.85rem;
+        }
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: #f97316;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            box-shadow: 0 5px 12px rgba(249,115,22,0.4);
+            color: white;
+        }
+        .scroll-top.show-scroll {
+            opacity: 1;
+            visibility: visible;
+        }
+        .fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        img {
+            max-width: 100%;
+        }
+        a {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="logo"><h1>Excel<span>Academy</span></h1></div>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+    <ul id="navMenu">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/academics.html">Academics</a></li>
+        <li><a href="/admission.html">Admissions</a></li>
+        <li><a href="/facility.html">Facilities</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a href="/apply now.html" class="btn-primary" style="padding: 10px 24px;">Apply Now</a>
+</nav>
+
+<!-- NEW HERO SECTION WITH SLIDER (replaces old hero gallery) -->
+<section id="home" class="hero">
+    <div class="hero-slider" id="heroSlider">
+        <!-- Slide 1 -->
+        <div class="slide active" data-index="0">
+            <img class="slide-bg" src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Students learning" loading="lazy">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h1>Building Future Leaders Through Quality Education</h1>
+                <p>Excel Academy provides a nurturing environment with qualified teachers, modern facilities, and outstanding WAEC/NECO success rates.</p>
+                <a href="/admission.html" class="btn-primary">Apply for Admission →</a>
+            </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide" data-index="1">
+            <img class="slide-bg" src="/image/field and playground.jpg" alt="Science Lab" loading="lazy">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h1>State-of-the-Art Science & ICT Labs</h1>
+                <p>Hands-on learning in fully equipped laboratories, robotics, and digital libraries. Preparing students for the future of innovation.</p>
+                <a href="/facility.html" class="btn-primary">Explore Facilities →</a>
+            </div>
+        </div>
+        <!-- Slilde 3 -->
+        <div class="slide" data-index="2">
+            <img class="slide-bg" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&h=900&fit=crop">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h1>95% WAEC Pass Rate & Counting</h1>
+                <p>Our students consistently excel in WAEC, NECO, and national competitions. Personalized coaching and expert teachers make the difference.</p>
+                <a href="/academics.html" class="btn-primary">View Academic Programs →</a>
+            </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="slide" data-index="3">
+            <img class="slide-bg" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Sports and extracurricular" loading="lazy">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h1>Character, Sports & Leadership</h1>
+                <p>Holistic development through sports, arts, and leadership programs. We build confident, disciplined, and socially responsible citizens.</p>
+                <a href="/about.html" class="btn-primary">Learn More →</a>
+            </div>
+        </div>
+        <!-- Dots -->
+        <div class="slider-dots" id="sliderDots"></div>
+    </div>
+</section>
+
+<section class="stats fade">
+    <div class="stat-item"><h3>95%</h3><p>WAEC Pass Rate</p></div>
+    <div class="stat-item"><h3>25+</h3><p>Qualified Teachers</p></div>
+    <div class="stat-item"><h3>600+</h3><p>Active Students</p></div>
+    <div class="stat-item"><h3>18+</h3><p>Years of Excellence</p></div>
+</section>
+
+<section id="about" class="about fade">
+    <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80">
+    </div>
+    <div class="about-text">
+        <h2>Shaping Minds Since 2008</h2>
+        <p>Excel Academy was founded with a mission to provide holistic education that balances academic rigor with character development. We nurture critical thinking, leadership, and integrity.</p>
+        <p><strong>Mission:</strong> To empower students with knowledge, skills, and values to thrive in a changing world while maintaining academic excellence and moral discipline.</p>
+        <p><strong>Vision:</strong> To become a center of educational excellence producing globally competitive and responsible citizens.</p>
+        <div class="values">
+            <span class="value-badge">📖 Discipline</span>
+            <span class="value-badge">⭐ Excellence</span>
+            <span class="value-badge">🤝 Integrity</span>
+            <span class="value-badge">🌍 Service</span>
+        </div>
+    </div>
+</section>
+
+<section id="programs" class="programs fade">
+    <div class="text-center"><h2 class="section-title">Our Academic Programs</h2></div>
+    <div class="program-grid">
+        <div class="program-card">
+            <i class="fas fa-book-open"></i>
+            <h3>Junior Secondary (JSS 1-3)</h3>
+            <p>Strong foundation in core subjects: Mathematics, English, Basic Science, Social Studies, Computer Studies, and more.</p>
+            <ul class="subjects"><li>✅ Integrated Science</li><li>✅ Civic Education</li><li>✅ Creative Arts</li></ul>
+        </div>
+        <div class="program-card">
+            <i class="fas fa-flask"></i>
+            <h3>Senior Secondary (SS 1-3)</h3>
+            <p>In-depth preparation for WAEC, NECO, and JAMB. Science, Commercial, and Arts departments with expert teachers.</p>
+            <ul class="subjects"><li>✅ Physics, Chemistry, Biology</li><li>✅ Economics, Accounting</li><li>✅ Literature, Government</li></ul>
+        </div>
+        <div class="program-card">
+            <i class="fas fa-chalkboard-user"></i>
+            <h3>WAEC & NECO Bootcamp</h3>
+            <p>Intensive revision classes, mock exams, and personalized coaching to guarantee outstanding results.</p>
+            <ul class="subjects"><li>✅ After-school tutorials</li><li>✅ Past questions mastery</li><li>✅ Exam confidence building</li></ul>
+        </div>
+    </div>
+</section>
+
+<section id="facilities" class="facilities fade">
+    <div class="text-center"><h2 class="section-title">State-of-the-Art Facilities</h2></div>
+    <div class="facility-grid">
+        <div class="facility-card"><img src="/image/field and playground.jpg" alt="Science lab" loading="lazy"><h4>Science Laboratory</h4><p>Fully equipped lab for practical experiments in Physics, Chemistry & Biology.</p></div>
+        <div class="facility-card"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=400&h=200&fit=crop" alt="ICT lab" loading="lazy"><h4>ICT & Robotics Lab</h4><p>Modern computers, high-speed internet, and coding workshops.</p></div>
+        <div class="facility-card"><img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=200&fit=crop" alt="Library" loading="lazy"><h4>Digital Library</h4><p>Thousands of academic resources and quiet study zones.</p></div>
+        <div class="facility-card"><img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=400&h=200&fit=crop" alt="Sports field" loading="lazy"><h4>Sports Complex</h4><p>Football, basketball, athletics, and indoor sports facilities.</p></div>
+    </div>
+</section>
+
+<section id="admissions" class="admissions fade">
+    <h2 class="section-title" style="display: inline-block;">Admissions Open for 2026/2027 Session</h2>
+    <div class="steps">
+        <div class="step"><span>1</span> Fill Application Form</div>
+        <div class="step"><span>2</span> Entrance Exam & Interview</div>
+        <div class="step"><span>3</span> Admission Confirmation</div>
+    </div>
+    <a href="/apply now.html" class="btn-primary" style="font-size: 1.1rem; padding: 14px 40px;" id="startApplicationBtn">📝 Start Application</a>
+    <p style="margin-top: 25px; color: #374151;">Application deadline: June 30th, 2026. Limited slots available.</p>
+</section>
+
+<section class="testimonials fade">
+    <div class="text-center"><h2 class="section-title">What Parents & Students Say</h2></div>
+    <div class="testimonial-grid">
+        <div class="testimonial-card"><p>“Excel Academy transformed my son’s confidence. He moved from average to top of his class and scored 7 A's in WAEC. The teachers truly care.”</p><h4>— Mrs. Adebayo, Parent</h4><span>Parent of SS3 graduate</span></div>
+        <div class="testimonial-card"><p>“The learning environment is safe and stimulating. My daughter loves the STEM club and has won several science competitions.”</p><h4>— Mr. Okafor, Guardian</h4><span>Parent of JSS2 student</span></div>
+        <div class="testimonial-card"><p>“I appreciate the discipline and moral guidance. The school prepares you not only for exams but for life after secondary school.”</p><h4>— Grace I., Alumnus</h4><span>Now studying Engineering</span></div>
+    </div>
+</section>
+
+<section class="cta-banner fade">
+    <h2>Give Your Child the Gift of Quality Education</h2>
+    <p>Enroll today and secure a future of excellence and character.</p>
+    <a href="/admission.html" class="btn-primary" style="background: #f97316;">Apply for Admission</a>
+</section>
+
+<footer class="footer" id="contact">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>Excel Academy</h4>
+            <p>Plot 12, Education Crescent, GRA Phase 2, Lagos, Nigeria.</p>
+            <p>📞 +234 802 345 6789</p>
+            <p>✉️ admissions@excelacademy.edu.ng</p>
+            <div class="social-icons"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-linkedin-in"></i><i class="fab fa-twitter"></i></div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="/about.html">About Us</a>
+            <a href="/academics.html">Academics</a>
+            <a href="/admission.html">Admissions</a>
+            <a href="/facility.html">Facilities</a>
+            <a href="/calender.html">School Calendar</a>
+        </div>
+        <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="/parents.html">Parent Portal</a>
+            <a href="/students handbook.html">Student Handbook</a>
+            <a href="/faqs.html">FAQs</a>
+            <a href="/scholarships.html">Scholarships</a>
+        </div>
+        <div class="footer-col">
+            <h4>Accreditation</h4>
+            <p>Approved by Lagos State Ministry of Education</p>
+            <p>Member of All Nigeria Confederation of Principals (ANCOPSS)</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Excel Academy. All rights reserved. Excellence, Discipline, Integrity.</p>
+    </div>
+</footer>
+
+<div class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></div>
+
+<script>
+    // Hero Slider Logic
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('sliderDots');
+    let currentIndex = 0;
+    let slideInterval;
+    const autoDelay = 5000;
+
+    // Create dots
+    function createDots() {
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (idx === currentIndex) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(idx));
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function updateDots() {
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, idx) => {
+            if (idx === currentIndex) dot.classList.add('active');
+            else dot.classList.remove('active');
+        });
+    }
+
+    function goToSlide(index) {
+        if (index === currentIndex) return;
+        slides[currentIndex].classList.remove('active');
+        currentIndex = index;
+        slides[currentIndex].classList.add('active');
+        updateDots();
+        resetTimer();
+    }
+
+    function nextSlide() {
+        let next = (currentIndex + 1) % slides.length;
+        goToSlide(next);
+    }
+
+    function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, autoDelay);
+    }
+
+    function resetTimer() {
+        clearInterval(slideInterval);
+        startAutoSlide();
+    }
+
+    function pauseSlider() {
+        clearInterval(slideInterval);
+    }
+
+    function resumeSlider() {
+        startAutoSlide();
+    }
+
+    // Initialize slider
+    if(slides.length) {
+        createDots();
+        startAutoSlide();
+        const sliderContainer = document.getElementById('heroSlider');
+        sliderContainer.addEventListener('mouseenter', pauseSlider);
+        sliderContainer.addEventListener('mouseleave', resumeSlider);
+    }
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    if(menuToggle) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+        });
+    }
+    document.querySelectorAll('#navMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
+    document.addEventListener('click', (e) => {
+        if(navMenu && navMenu.classList.contains('active') && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 30) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        if(window.scrollY > 500) scrollBtn.classList.add('show-scroll');
+        else scrollBtn.classList.remove('show-scroll');
+    });
+
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Intersection Observer for fade
+    const faders = document.querySelectorAll('.fade');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) entry.target.classList.add('show');
+        });
+    }, { threshold: 0.15 });
+    faders.forEach(el => observer.observe(el));
+
+    // Smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if(targetId === "#" || targetId === "") return;
+            const target = document.querySelector(targetId);
+            if(target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    const startBtn = document.getElementById('startApplicationBtn');
+    if(startBtn) {
+        startBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const admissionsSection = document.getElementById('admissions');
+            if(admissionsSection) admissionsSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+    const socialIcons = document.querySelectorAll('.social-icons i');
+    socialIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            window.open('https://www.example.com/social', '_blank');
+        });
+    });
+</script>
+</body>
+</html>
