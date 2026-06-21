@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Student FAQs | Excel Academy - Your Questions Answered</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: #f97316;
+            color: white;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            color: #0f172a;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #f97316;
+            border-radius: 3px;
+        }
+
+        .btn-primary {
+            background: #f97316;
+            border: none;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 40px;
+            color: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #f97316;
+            padding: 10px 24px;
+            font-weight: 600;
+            border-radius: 40px;
+            color: #f97316;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-outline:hover {
+            background: #f97316;
+            color: white;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            font-family: 'Outfit', sans-serif;
+        }
+        .navbar.scrolled {
+            padding: 12px 5%;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+        }
+        .logo h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #0f172a;
+            font-family: 'Outfit', sans-serif;
+        }
+        .logo span {
+            color: #f97316;
+            font-weight: 800;
+        }
+        .logo a {
+            text-decoration: none;
+        }
+        .navbar ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .navbar li a {
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            font-family: 'Outfit', sans-serif;
+        }
+        .navbar li a:hover {
+            color: #f97316;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #0f172a;
+        }
+        @media (max-width: 880px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 70px;
+                right: 5%;
+                width: 220px;
+                padding: 28px;
+                border-radius: 24px;
+                gap: 20px;
+                box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+                border: 1px solid #e2e8f0;
+            }
+            .navbar ul.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Page Header */
+                .page-header {
+    position: relative;
+    background-image: url(/image/b4.jpg);
+    background-size: cover;
+    background-position: center 35%;
+    padding: 260px 5% 130px;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+        .page-header::before {
+    background: linear-gradient(
+        rgba(2, 6, 23, 0.55),
+        rgba(2, 6, 23, 0.30)
+    );
+}
+        .page-header h1,
+        .page-header p {
+            position: relative;
+            z-index: 1;
+        }
+        .page-header h1 {
+    color: #ffffff;
+    opacity: 0.5;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+        .page-header h1 {
+            font-size: clamp(2.2rem, 5vw, 3.9rem);
+            margin-bottom: 20px;
+        }
+        .page-header p {
+            font-size: 1.08rem;
+            max-width: 760px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 700px;
+            margin: -30px auto 40px;
+            padding: 0 5%;
+            position: relative;
+            z-index: 10;
+        }
+        .search-box {
+            background: white;
+            border-radius: 60px;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 15px 35px -12px rgba(0,0,0,0.15);
+            border: 1px solid #e2e8f0;
+        }
+        .search-box i {
+            color: #f97316;
+            font-size: 1.2rem;
+        }
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 16px 0;
+            font-size: 1rem;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .search-box button {
+            background: #f97316;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .search-box button:hover {
+            background: #ea580c;
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 50px;
+            padding: 0 5%;
+        }
+        .cat-btn {
+            background: white;
+            border: 1.5px solid #e2e8f0;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #475569;
+        }
+        .cat-btn:hover {
+            border-color: #f97316;
+            color: #f97316;
+        }
+        .cat-btn.active {
+            background: #f97316;
+            border-color: #f97316;
+            color: white;
+        }
+
+        /* FAQ Container */
+        .faq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5% 80px;
+        }
+        .faq-category {
+            margin-bottom: 50px;
+        }
+        .faq-category h2 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fef3c7;
+            display: inline-block;
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+        .faq-item:hover {
+            border-color: #fed7aa;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: #0f172a;
+            transition: 0.2s;
+        }
+        .faq-question:hover {
+            background: #fef9f0;
+        }
+        .faq-question i {
+            color: #f97316;
+            transition: 0.3s;
+        }
+        .faq-question.open i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 25px;
+            background: #f8fafc;
+            border-top: 1px solid transparent;
+        }
+        .faq-answer.open {
+            max-height: 300px;
+            padding: 20px 25px;
+            border-top-color: #e2e8f0;
+        }
+        .faq-answer p {
+            color: #475569;
+            line-height: 1.6;
+        }
+        .faq-answer ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .faq-answer li {
+            margin: 5px 0;
+            color: #475569;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            background: white;
+            border-radius: 28px;
+            grid-column: 1 / -1;
+        }
+        .no-results i {
+            font-size: 3rem;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        /* Ask Question Section */
+        .ask-question {
+            background: linear-gradient(135deg, #fef9f0, #ffffff);
+            border-radius: 32px;
+            padding: 50px;
+            text-align: center;
+            margin-top: 60px;
+            border: 1px solid #fed7aa;
+        }
+        .ask-question h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        .ask-question p {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        /* Footer */
+        .footer {
+              background-image: url(/image/background\ 22.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #cbd5e1;
+            padding: 50px 5% 30px;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .footer-col p, .footer-col a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+        }
+        .footer-col a:hover { color: #f97316; }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .social-icons i {
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #1e293b;
+            font-size: 0.85rem;
+        }
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: #f97316;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            color: white;
+        }
+        .scroll-top.show-scroll {
+            opacity: 1;
+            visibility: visible;
+        }
+        .fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 680px) {
+            .page-header h1 { font-size: 2rem; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .ask-question { padding: 30px 20px; }
+            .search-box button { padding: 8px 16px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="logo"><a href="index.html"><h1>Excel<span>Academy</span></h1></a></div>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+    <ul id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="academics.html">Academics</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="facilities.html">Facilities</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="apply-now.html" class="btn-primary" style="padding: 10px 24px;">Apply Now</a>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header fade">
+    <h1>Student FAQs</h1>
+    <p>Quick answers to common questions about academics, campus life, policies, and more</p>
+</section>
+
+<!-- Search Bar -->
+<div class="search-container fade">
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search FAQs... (e.g., uniform, exam, library)">
+        <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+    </div>
+</div>
+
+<!-- Category Tabs -->
+<div class="category-tabs fade">
+    <button class="cat-btn active" data-cat="all">📚 All Questions</button>
+    <button class="cat-btn" data-cat="academic">📖 Academics</button>
+    <button class="cat-btn" data-cat="campus">🏫 Campus Life</button>
+    <button class="cat-btn" data-cat="policies">⚖️ School Policies</button>
+    <button class="cat-btn" data-cat="sports">⚽ Sports & Clubs</button>
+    <button class="cat-btn" data-cat="tech">💻 Technology</button>
+</div>
+
+<!-- FAQ Container -->
+<div class="faq-container fade" id="faqContainer">
+    <!-- Academic FAQs -->
+    <div class="faq-category" data-category="academic">
+        <h2><i class="fas fa-book-open"></i> Academics & Curriculum</h2>
+        <div class="faq-grid">
+            <div class="faq-item"><div class="faq-question">What subjects are offered in JSS? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>JSS students study: Mathematics, English, Basic Science, Social Studies, Business Studies, Computer Studies, French, Cultural & Creative Arts, Physical & Health Education, Civic Education, and Agricultural Science.</p></div></div>
+            <div class="faq-item"><div class="faq-question">What are the science department subjects? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Science students take: Physics, Chemistry, Biology, Mathematics, Further Mathematics, English, Computer Science, and Agricultural Science.</p></div></div>
+            <div class="faq-item"><div class="faq-question">How are continuous assessments calculated? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Continuous Assessment (CA) makes up 40% of your final grade. It includes class tests, assignments, projects, class participation, and homework.</p></div></div>
+            <div class="faq-item"><div class="faq-question">What is the promotion policy? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Students must achieve a minimum 50% average to be promoted. SS3 students must meet WAEC registration requirements.</p></div></div>
+            <div class="faq-item"><div class="faq-question">Is there extra help for struggling students? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Yes! We offer after-school tutorials, peer tutoring programs, and teachers are available during break time for extra assistance.</p></div></div>
+        </div>
+    </div>
+
+    <!-- Campus Life FAQs -->
+    <div class="faq-category" data-category="campus">
+        <h2><i class="fas fa-school"></i> Campus Life</h2>
+        <div class="faq-grid">
+            <div class="faq-item"><div class="faq-question">What are school hours? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>School runs from 8:00 AM to 3:00 PM, Monday through Friday. Morning assembly starts at 7:45 AM. Late arrival after 8:00 AM is recorded.</p></div></div>
+            <div class="faq-item"><div class="faq-question">Is there a cafeteria? What food is served? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Yes! Our modern cafeteria serves nutritious breakfast, lunch, and snacks. Options include rice, beans, yam, eggs, chicken, fruits, and healthy beverages.</p></div></div>
+            <div class="faq-item"><div class="faq-question">How do I report a lost item? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Visit the school's Lost & Found office located near the main reception. Label all belongings with your name for easy identification.</p></div></div>
+            <div class="faq-item"><div class="faq-question">What medical facilities are available? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>We have a fully equipped clinic with a registered nurse on-site during school hours. Emergency care and first aid are always available.</p></div></div>
+        </div>
+    </div>
+
+    <!-- School Policies FAQs -->
+    <div class="faq-category" data-category="policies">
+        <h2><i class="fas fa-gavel"></i> School Policies</h2>
+        <div class="faq-grid">
+            <div class="faq-item"><div class="faq-question">What is the uniform dress code? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Boys: White shirt, navy blue trousers, blue tie, black shoes. Girls: White blouse, navy blue pinafore/skirt, blue tie, black shoes. P.E.: Navy blue track suit and white sneakers.</p></div></div>
+            <div class="faq-item"><div class="faq-question">Are mobile phones allowed? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>No. Mobile phones and smartwatches are strictly prohibited during school hours. They will be confiscated and returned only to parents.</p></div></div>
+            <div class="faq-item"><div class="faq-question">What is the policy on bullying? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Excel Academy has ZERO tolerance for bullying. Report any incidents to your class teacher, counselor, or use the anonymous reporting box. Disciplinary action will be taken.</p></div></div>
+            <div class="faq-item"><div class="faq-question">How do I request a leave of absence? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Submit a written request from your parent/guardian at least 24 hours in advance. Emergency leave requires a phone call to the school office before 8:00 AM.</p></div></div>
+            <div class="faq-item"><div class="faq-question">What happens if I miss an examination? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>A valid medical certificate or documented emergency is required for a make-up exam. Unexcused absences result in a zero grade.</p></div></div>
+        </div>
+    </div>
+
+    <!-- Sports & Clubs FAQs -->
+    <div class="faq-category" data-category="sports">
+        <h2><i class="fas fa-futbol"></i> Sports & Clubs</h2>
+        <div class="faq-grid">
+            <div class="faq-item"><div class="faq-question">What sports are available? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Football, basketball, swimming, athletics (track & field), table tennis, volleyball, and chess. Inter-house sports competitions are held annually.</p></div></div>
+            <div class="faq-item"><div class="faq-question">How do I join a club? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Club registration happens at the beginning of each term. Listen to announcements for sign-up dates or speak to the club advisor.</p></div></div>
+            <div class="faq-item"><div class="faq-question">What clubs are offered? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Debate Club, Science Club, Press Club, Robotics Club, Coding Club, Drama Club, Choir, Art Club, Red Cross, and Cultural Dance Club.</p></div></div>
+            <div class="faq-item"><div class="faq-question">Can I start a new club? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Yes! Submit a proposal to the Student Affairs office with a mission statement, faculty advisor, and at least 10 interested members.</p></div></div>
+        </div>
+    </div>
+
+    <!-- Technology FAQs -->
+    <div class="faq-category" data-category="tech">
+        <h2><i class="fas fa-laptop-code"></i> Technology & ICT</h2>
+        <div class="faq-grid">
+            <div class="faq-item"><div class="faq-question">Do we have computer labs? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Yes! Two modern computer labs with 50+ computers, high-speed internet, and the latest software for learning.</p></div></div>
+            <div class="faq-item"><div class="faq-question">Can I use my laptop in class? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Personal laptops are allowed for senior students only with teacher permission. All use must be academic-related.</p></div></div>
+            <div class="faq-item"><div class="faq-question">What coding languages do we learn? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Our ICT curriculum covers Python, HTML/CSS, JavaScript, Scratch, and robotics programming depending on the class level.</p></div></div>
+            <div class="faq-item"><div class="faq-question">Is Wi-Fi available for students? <i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Wi-Fi is available in computer labs and designated areas for educational purposes only. Personal use is restricted.</p></div></div>
+        </div>
+    </div>
+
+    <!-- No Results Message (hidden by default) -->
+    <div id="noResults" class="no-results" style="display: none;">
+        <i class="fas fa-search"></i>
+        <h3>No FAQs Found</h3>
+        <p>We couldn't find any questions matching your search. Try different keywords or contact us directly.</p>
+        <a href="#" class="btn-outline" style="margin-top: 15px; display: inline-block;" id="clearSearchBtn">Clear Search</a>
+    </div>
+</div>
+
+<!-- Ask Question Section -->
+<section class="ask-question fade">
+    <h3>Still have questions?</h3>
+    <p>Can't find what you're looking for? We're here to help!</p>
+    <a href="contact.html" class="btn-primary">Ask Your Question →</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col"><h4>Excel Academy</h4><p>Plot 12, Education Crescent, GRA Phase 2, Lagos, Nigeria.</p><p>📞 +234 802 345 6789</p><p>✉️ info@excelacademy.edu.ng</p><div class="social-icons"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-linkedin-in"></i><i class="fab fa-twitter"></i></div></div>
+        <div class="footer-col"><h4>Quick Links</h4><a href="about.html">About Us</a><a href="academics.html">Academics</a><a href="admissions.html">Admissions</a><a href="contact.html">Contact</a></div>
+        <div class="footer-col"><h4>Resources</h4><a href="school-calendar.html">School Calendar</a><a href="parents-portal.html">Parents Portal</a><a href="student-handbook.html">Student Handbook</a><a href="scholarship.html">Scholarships</a></div>
+        <div class="footer-col"><h4>Accreditation</h4><p>Approved by Lagos State Ministry of Education</p><p>Member of ANCOPSS</p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Excel Academy. All rights reserved. Excellence, Discipline, Integrity.</p></div>
+</footer>
+
+<div class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></div>
+
+<script>
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    if(menuToggle) {
+        menuToggle.addEventListener('click', (e) => { e.stopPropagation(); navMenu.classList.toggle('active'); });
+    }
+    document.querySelectorAll('#navMenu a').forEach(link => { link.addEventListener('click', () => { navMenu.classList.remove('active'); }); });
+    document.addEventListener('click', (e) => { if(navMenu && navMenu.classList.contains('active') && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) navMenu.classList.remove('active'); });
+
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 30) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        if(window.scrollY > 500) scrollBtn.classList.add('show-scroll');
+        else scrollBtn.classList.remove('show-scroll');
+    });
+
+    document.getElementById('scrollTopBtn').addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    // Fade observer
+    const faders = document.querySelectorAll('.fade');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); }); }, { threshold: 0.1 });
+    faders.forEach(el => observer.observe(el));
+
+    // Accordion functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            const isOpen = answer.classList.contains('open');
+            
+            // Close all other answers (optional - for exclusive open)
+            document.querySelectorAll('.faq-answer').forEach(a => {
+                if (a !== answer) a.classList.remove('open');
+            });
+            document.querySelectorAll('.faq-question').forEach(q => {
+                if (q !== question) q.classList.remove('open');
+            });
+            
+            // Toggle current
+            answer.classList.toggle('open');
+            question.classList.toggle('open');
+        });
+    });
+
+    // Category filtering
+    const catBtns = document.querySelectorAll('.cat-btn');
+    const faqCategories = document.querySelectorAll('.faq-category');
+    const noResultsDiv = document.getElementById('noResults');
+    let currentCategory = 'all';
+    let currentSearchTerm = '';
+
+    function filterFAQs() {
+        let anyVisible = false;
+        
+        faqCategories.forEach(category => {
+            const catValue = category.getAttribute('data-category');
+            const categoryVisible = (currentCategory === 'all' || currentCategory === catValue);
+            
+            if (!categoryVisible) {
+                category.style.display = 'none';
+                return;
+            }
+            
+            category.style.display = 'block';
+            const faqItems = category.querySelectorAll('.faq-item');
+            let categoryHasVisible = false;
+            
+            faqItems.forEach(item => {
+                const questionText = item.querySelector('.faq-question').innerText.toLowerCase();
+                const answerText = item.querySelector('.faq-answer').innerText.toLowerCase();
+                const matchesSearch = currentSearchTerm === '' || 
+                    questionText.includes(currentSearchTerm) || 
+                    answerText.includes(currentSearchTerm);
+                
+                if (matchesSearch) {
+                    item.style.display = 'block';
+                    categoryHasVisible = true;
+                    anyVisible = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            if (!categoryHasVisible) {
+                category.style.display = 'none';
+            }
+        });
+        
+        // Show/hide no results message
+        if (!anyVisible && currentSearchTerm !== '') {
+            noResultsDiv.style.display = 'block';
+        } else {
+            noResultsDiv.style.display = 'none';
+        }
+    }
+
+    catBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            catBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.getAttribute('data-cat');
+            filterFAQs();
+        });
+    });
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    
+    function performSearch() {
+        currentSearchTerm = searchInput.value.trim().toLowerCase();
+        filterFAQs();
+    }
+    
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch();
+    });
+    
+    // Clear search
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    if (clearSearchBtn) {
+        clearSearchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            searchInput.value = '';
+            currentSearchTerm = '';
+            filterFAQs();
+        });
+    }
+
+    // Social icons
+    document.querySelectorAll('.social-icons i').forEach(icon => { icon.addEventListener('click', () => { window.open('https://www.example.com/social', '_blank'); }); });
+</script>
+</body>
+</html>

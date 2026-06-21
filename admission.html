@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Admissions | Excel Academy - Enroll Your Child Today</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1e293b;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: #f97316;
+            color: white;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            color: #0f172a;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: #f97316;
+            border-radius: 4px;
+        }
+        .text-center .section-title:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: #f97316;
+            border: none;
+            padding: 14px 32px;
+            font-weight: 600;
+            border-radius: 40px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 6px 14px rgba(249, 115, 22, 0.25);
+            display: inline-block;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-primary:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #f97316;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 40px;
+            color: #f97316;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-outline:hover {
+            background: #f97316;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            font-family: 'Outfit', sans-serif;
+        }
+        .navbar.scrolled {
+            padding: 12px 5%;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+        }
+        .logo h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #0f172a;
+            font-family: 'Outfit', sans-serif;
+        }
+        .logo span {
+            color: #f97316;
+            font-weight: 800;
+        }
+        .logo a {
+            text-decoration: none;
+        }
+        .navbar ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .navbar li a {
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            letter-spacing: -0.2px;
+            font-family: 'Outfit', sans-serif;
+        }
+        .navbar li a:hover, .navbar li a.active {
+            color: #f97316;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #0f172a;
+        }
+        @media (max-width: 880px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 70px;
+                right: 5%;
+                width: 220px;
+                padding: 28px;
+                border-radius: 24px;
+                gap: 20px;
+                box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+                border: 1px solid #e2e8f0;
+            }
+            .navbar ul.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Page Header */
+        .page-header {
+    position: relative;
+    background-image: url(/image/b4.jpg);
+    background-size: cover;
+    background-position: center 35%;
+    padding: 260px 5% 130px;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+        .page-header::before {
+    background: linear-gradient(
+        rgba(2, 6, 23, 0.55),
+        rgba(2, 6, 23, 0.30)
+    );
+}
+        .page-header h1,
+        .page-header p {
+            position: relative;
+            z-index: 1;
+        }
+        .page-header h1 {
+    color: #ffffff;
+    opacity: 0.5;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+        .page-header h1 {
+            font-size: clamp(2.2rem, 5vw, 3.9rem);
+            margin-bottom: 20px;
+        }
+        .page-header p {
+            font-size: 1.08rem;
+            max-width: 760px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        /* Stats Banner */
+        .stats-banner {
+            background: #fd8733;
+            padding: 40px 5%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            gap: 30px;
+            color: white;
+        }
+        .stat-item h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+        .stat-item p {
+            font-weight: 500;
+            opacity: 0.95;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            padding: 80px 5%;
+            background: white;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .benefit-card {
+            text-align: center;
+            padding: 35px 25px;
+            background: #f8fafc;
+            border-radius: 28px;
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            border-color: #fed7aa;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+        .benefit-card i {
+            font-size: 2.8rem;
+            color: #f97316;
+            margin-bottom: 20px;
+        }
+        .benefit-card h3 {
+            margin-bottom: 12px;
+        }
+        .benefit-card p {
+            color: #475569;
+        }
+
+        /* Admission Process Steps */
+        .process-section {
+            background: #fef9f0;
+            padding: 80px 5%;
+        }
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0 40px;
+        }
+        .step-card {
+            background: white;
+            border-radius: 32px;
+            padding: 30px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #f97316;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+        .step-card h3 {
+            margin-bottom: 12px;
+        }
+        .step-card p {
+            color: #475569;
+        }
+
+        /* Application Form */
+        .application-form-section {
+            padding: 80px 5%;
+            background: white;
+        }
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #f8fafc;
+            border-radius: 40px;
+            padding: 50px;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.08);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            background: white;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        @media (max-width: 680px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            .form-container {
+                padding: 30px 20px;
+            }
+        }
+        .success-message {
+            background: #10b981;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 16px;
+            margin-top: 25px;
+            display: none;
+            text-align: center;
+        }
+
+        /* Fee Structure */
+        .fee-section {
+            background: #0f172a;
+            padding: 80px 5%;
+            color: white;
+        }
+        .fee-section .section-title {
+            color: white;
+        }
+        .fee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .fee-card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 28px;
+            transition: 0.3s;
+            border: 1px solid #334155;
+        }
+        .fee-card:hover {
+            transform: translateY(-5px);
+            border-color: #f97316;
+        }
+        .fee-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #f97316;
+        }
+        .fee-card ul {
+            list-style: none;
+        }
+        .fee-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+        }
+        .fee-card li:last-child {
+            border-bottom: none;
+        }
+        .fee-card .total {
+            font-weight: 800;
+            color: #f97316;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #f97316;
+        }
+
+        /* Important Dates */
+        .dates-section {
+            padding: 80px 5%;
+            background: white;
+        }
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .date-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 24px;
+            border-left: 5px solid #f97316;
+        }
+        .date-card .date {
+            font-size: 1rem;
+            color: #f97316;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .date-card h4 {
+            margin-bottom: 8px;
+        }
+
+        /* CTA Banner */
+        .cta-section {
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            padding: 70px 5%;
+            text-align: center;
+            color: white;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .cta-section .btn-primary {
+            background: white;
+            color: #f97316;
+            box-shadow: none;
+            margin-top: 20px;
+        }
+        .cta-section .btn-primary:hover {
+            background: #fef3c7;
+        }
+
+        /* Footer */
+        .footer {
+              background-image: url(/image/background\ 22.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #cbd5e1;
+            padding: 50px 5% 30px;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .footer-col p, .footer-col a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+        }
+        .footer-col a:hover {
+            color: #f97316;
+        }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .social-icons i {
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .social-icons i:hover {
+            color: #f97316;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #1e293b;
+            font-size: 0.85rem;
+        }
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: #f97316;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            box-shadow: 0 5px 12px rgba(249,115,22,0.4);
+            color: white;
+        }
+        .scroll-top.show-scroll {
+            opacity: 1;
+            visibility: visible;
+        }
+        .fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 680px) {
+            .page-header h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="logo"><a href="index.html"><h1>Excel<span>Academy</span></h1></a></div>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+    <ul id="navMenu">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/academics.html">Academics</a></li>
+        <li><a href="/admission.html" class="active">Admissions</a></li>
+        <li><a href="/facility.html">Facilities</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a href="#application-form" class="btn-primary" style="padding: 10px 24px;">Apply Now</a>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header fade">
+    <h1>Admissions Open 2026/2027</h1>
+    <p>Join a community of excellence — Limited slots available for Junior and Senior Secondary classes</p>
+</section>
+
+<!-- Stats Banner -->
+<section class="stats-banner fade">
+    <div class="stat-item"><h3>600+</h3><p>Happy Students</p></div>
+    <div class="stat-item"><h3>25:1</h3><p>Student-Teacher Ratio</p></div>
+    <div class="stat-item"><h3>95%</h3><p>WAEC Success Rate</p></div>
+    <div class="stat-item"><h3>100%</h3><p>Graduate Placement</p></div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="why-choose fade">
+    <div class="text-center"><h2 class="section-title">Why Choose Excel Academy?</h2></div>
+    <div class="benefits-grid">
+        <div class="benefit-card"><i class="fas fa-chalkboard-user"></i><h3>Expert Teachers</h3><p>Qualified, experienced educators dedicated to student success.</p></div>
+        <div class="benefit-card"><i class="fas fa-flask"></i><h3>Modern Labs</h3><p>Fully equipped science, ICT, and robotics laboratories.</p></div>
+        <div class="benefit-card"><i class="fas fa-trophy"></i><h3>Proven Results</h3><p>Consistent WAEC/NECO excellence and national awards.</p></div>
+        <div class="benefit-card"><i class="fas fa-shield-alt"></i><h3>Safe Environment</h3><p>24/7 security, CCTV monitoring, and caring staff.</p></div>
+    </div>
+</section>
+
+<!-- Admission Process Steps -->
+<section class="process-section fade">
+    <div class="text-center"><h2 class="section-title">Simple 3-Step Admission Process</h2></div>
+    <div class="steps-container">
+        <div class="step-card"><div class="step-number">1</div><h3>Complete Application</h3><p>Fill out the online form or download the application form.</p></div>
+        <div class="step-card"><div class="step-number">2</div><h3>Entrance Assessment</h3><p>Take our entrance exam & interview (for JSS1 & SS1).</p></div>
+        <div class="step-card"><div class="step-number">3</div><h3>Admission Confirmation</h3><p>Receive offer letter and complete enrollment.</p></div>
+    </div>
+    <div class="text-center"><a href="#application-form" class="btn-primary btn-large">Start Your Application →</a></div>
+</section>
+
+<!-- Application Form -->
+<section id="application-form" class="application-form-section fade">
+    <div class="form-container">
+        <h2 class="section-title" style="display: block; text-align: center; margin-bottom: 30px;">Online Application Form</h2>
+        <form id="admissionForm">
+            <div class="form-grid">
+                <div class="form-group"><label>Full Name *</label><input type="text" id="studentName" required placeholder="Student's full name"></div>
+                <div class="form-group"><label>Date of Birth *</label><input type="date" id="dob" required></div>
+                <div class="form-group"><label>Parent/Guardian Name *</label><input type="text" id="parentName" required></div>
+                <div class="form-group"><label>Email Address *</label><input type="email" id="email" required></div>
+                <div class="form-group"><label>Phone Number *</label><input type="tel" id="phone" required></div>
+                <div class="form-group"><label>Applying for Class *</label><select id="classLevel" required><option value="">Select Class</option><option>JSS 1</option><option>JSS 2</option><option>JSS 3</option><option>SS 1</option><option>SS 2</option><option>SS 3</option></select></div>
+                <div class="form-group full-width"><label>Previous School (if applicable)</label><input type="text" id="prevSchool"></div>
+                <div class="form-group full-width"><label>Additional Comments / Questions</label><textarea id="comments" placeholder="Any specific information you'd like to share..."></textarea></div>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">Submit Application →</button>
+            <div id="formSuccess" class="success-message">✓ Application submitted successfully! Our admissions team will contact you within 48 hours.</div>
+        </form>
+        <p style="margin-top: 20px; text-align: center; font-size: 0.85rem; color: #64748b;">* Application fee of ₦10,000 is payable after submission. You will receive payment instructions via email.</p>
+    </div>
+</section>
+
+<!-- Fee Structure -->
+<section class="fee-section fade">
+    <div class="text-center"><h2 class="section-title">Fee Structure (2026/2027 Session)</h2></div>
+    <div class="fee-grid">
+        <div class="fee-card"><h3>Junior Secondary</h3><ul><li><span>Tuition Fee</span><span>₦250,000</span></li><li><span>Development Levy</span><span>₦50,000</span></li><li><span>ICT & Lab Fee</span><span>₦30,000</span></li><li><span>Sports & Activities</span><span>₦20,000</span></li><li class="total"><span>Total (Per Session)</span><span>₦350,000</span></li></ul></div>
+        <div class="fee-card"><h3>Senior Secondary</h3><ul><li><span>Tuition Fee</span><span>₦300,000</span></li><li><span>Development Levy</span><span>₦50,000</span></li><li><span>ICT & Lab Fee</span><span>₦40,000</span></li><li><span>WAEC/NECO Prep</span><span>₦30,000</span></li><li class="total"><span>Total (Per Session)</span><span>₦420,000</span></li></ul></div>
+        <div class="fee-card"><h3>Payment Options</h3><ul><li><span>Termly Installments</span><span>3 installments</span></li><li><span>Annual Payment</span><span>5% discount</span></li><li><span>Sibling Discount</span><span>10% off</span></li><li><span>Scholarships</span><span>Merit-based</span></li></ul></div>
+    </div>
+    <div class="text-center" style="margin-top: 40px;"><p style="opacity: 0.8;">* Fees exclude uniforms, books, and extra-curricular trips. Contact us for detailed breakdown.</p></div>
+</section>
+
+<!-- Important Dates -->
+<section class="dates-section fade">
+    <div class="text-center"><h2 class="section-title">Important Dates</h2></div>
+    <div class="dates-grid">
+        <div class="date-card"><div class="date">📅 March 1, 2026</div><h4>Application Opens</h4><p>Online and physical forms available.</p></div>
+        <div class="date-card"><div class="date">📅 June 30, 2026</div><h4>Application Deadline</h4><p>Late applications may incur additional fees.</p></div>
+        <div class="date-card"><div class="date">📅 July 15, 2026</div><h4>Entrance Examination</h4><p>For all JSS1 and SS1 applicants.</p></div>
+        <div class="date-card"><div class="date">📅 August 10, 2026</div><h4>Admission Offers Sent</h4><p>Via email and SMS.</p></div>
+        <div class="date-card"><div class="date">📅 September 8, 2026</div><h4>Resumption Day</h4><p>First day of academic session.</p></div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section fade">
+    <h2>Ready to Enroll Your Child?</h2>
+    <p>Take the first step towards a world-class education. Limited spaces available!</p>
+    <a href="#application-form" class="btn-primary">Apply for Admission</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>Excel Academy</h4>
+            <p>Plot 12, Education Crescent, GRA Phase 2, Lagos, Nigeria.</p>
+            <p>📞 +234 802 345 6789</p>
+            <p>✉️ admissions@excelacademy.edu.ng</p>
+            <div class="social-icons"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-linkedin-in"></i><i class="fab fa-twitter"></i></div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="about.html">About Us</a>
+            <a href="index.html#programs">Academics</a>
+            <a href="admissions.html">Admissions</a>
+            <a href="index.html#facilities">Facilities</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="#">Parent Portal</a>
+            <a href="#">Student Handbook</a>
+            <a href="#">Scholarships</a>
+            <a href="#">FAQs</a>
+        </div>
+        <div class="footer-col">
+            <h4>Accreditation</h4>
+            <p>Approved by Lagos State Ministry of Education</p>
+            <p>Member of ANCOPSS</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Excel Academy. All rights reserved. Excellence, Discipline, Integrity.</p>
+    </div>
+</footer>
+
+<div class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></div>
+
+<script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    if(menuToggle) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+        });
+    }
+    document.querySelectorAll('#navMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
+    document.addEventListener('click', (e) => {
+        if(navMenu && navMenu.classList.contains('active') && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 30) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        if(window.scrollY > 500) scrollBtn.classList.add('show-scroll');
+        else scrollBtn.classList.remove('show-scroll');
+    });
+
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Intersection Observer for fade-in
+    const faders = document.querySelectorAll('.fade');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) entry.target.classList.add('show');
+        });
+    }, { threshold: 0.1 });
+    faders.forEach(el => observer.observe(el));
+
+    // Form submission handler
+    const admissionForm = document.getElementById('admissionForm');
+    const successMsg = document.getElementById('formSuccess');
+    
+    if(admissionForm) {
+        admissionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('studentName')?.value;
+            const parent = document.getElementById('parentName')?.value;
+            const email = document.getElementById('email')?.value;
+            
+            if(name && parent && email) {
+                successMsg.style.display = 'block';
+                admissionForm.reset();
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+    }
+
+    // Social icons
+    const socialIcons = document.querySelectorAll('.social-icons i');
+    socialIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            window.open('https://www.example.com/social', '_blank');
+        });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if(targetId === "#" || targetId === "") return;
+            const target = document.querySelector(targetId);
+            if(target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+</html>

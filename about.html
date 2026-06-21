@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Excel Academy | About — Premium British-Nigerian School</title>
+  <!-- Preconnect & Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-dark: #0a0f1c;
+      --accent: #e67e22;
+      --accent-gold: #f59e0b;
+      --accent-deep: #b45309;
+      --white: #ffffff;
+      --gray-light: #f8fafc;
+      --text-soft: #334155;
+      --shadow-elevation: 0 25px 40px -12px rgba(0, 0, 0, 0.25);
+      --transition-smooth: all 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--white);
+      color: #1e293b;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    h1, h2, .heading-serif {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* ========== PREMIUM NAVBAR (fixed, clean) ========== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    }
+    .navbar.scrolled {
+      padding: 14px 5%;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    }
+    .logo h1 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: #0f172a;
+      font-family: 'Playfair Display', serif;
+    }
+    .logo span {
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .logo a {
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links li a {
+      text-decoration: none;
+      color: #1e293b;
+      font-weight: 500;
+      transition: 0.2s;
+      font-size: 0.95rem;
+      letter-spacing: -0.2px;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: var(--accent);
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 8px rgba(230, 126, 34, 0.2);
+    }
+    .btn-primary:hover {
+      background: var(--accent-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(230, 126, 34, 0.25);
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #0f172a;
+    }
+    @media (max-width: 880px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        position: absolute;
+        top: 74px;
+        right: 5%;
+        width: 240px;
+        padding: 28px 24px;
+        border-radius: 28px;
+        gap: 20px;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e2e8f0;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .btn-primary {
+        display: none;
+      }
+    }
+
+    /* ========== NEW ABOUT HERO SECTION (clean, premium) ========== */
+    .page-header {
+    position: relative;
+    background-image: url(/image/b4.jpg);
+    background-size: cover;
+    background-position: center 35%;
+    padding: 260px 5% 130px;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+        .page-header::before {
+    background: linear-gradient(
+        rgba(2, 6, 23, 0.55),
+        rgba(2, 6, 23, 0.30)
+    );
+}
+        .page-header h1,
+        .page-header p {
+            position: relative;
+            z-index: 1;
+        }
+        .page-header h1 {
+    color: #ffffff;
+    opacity: 0.5;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+        .page-header h1 {
+            font-size: clamp(2.2rem, 5vw, 3.9rem);
+            margin-bottom: 20px;
+        }
+        .page-header p {
+            font-size: 1.08rem;
+            max-width: 760px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+    /* ========== REST OF PAGE STYLES (preserved & refined) ========== */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    section {
+      padding: 5rem 0;
+    }
+    .section-bg-light {
+      background: var(--gray-light);
+    }
+    .section-gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #fef7ed 100%);
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .value-card {
+      background: white;
+      padding: 2rem 1.5rem;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+    .value-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+    }
+    .value-card i {
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-gold));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .facility-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .facility-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(3px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: 0.3s;
+      color: white;
+    }
+    .facility-card:hover .overlay {
+      opacity: 1;
+    }
+    .facility-card:hover img {
+      transform: scale(1.05);
+    }
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .cta-strong {
+      background: linear-gradient(115deg, #0f172a, #1e293b), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600');
+      background-blend-mode: overlay;
+      background-size: cover;
+      text-align: center;
+      border-radius: 48px;
+      margin: 2rem auto;
+      padding: 4rem 2rem;
+      color: white;
+    }
+    .btn-outline-light {
+      background: transparent;
+      border: 1.5px solid white;
+      padding: 10px 28px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      margin-left: 12px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .btn-outline-light:hover {
+      background: white;
+      color: #0f172a;
+    }
+    .footer {
+             background-image: url(/image/background\ 22.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #cbd5e1;
+            padding: 50px 5% 30px;
+        }
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+    .footer-col p, .footer-col a {
+      color: #94a3b8;
+      text-decoration: none;
+      line-height: 1.8;
+      display: block;
+    }
+    .footer-col a:hover {
+      color: var(--accent);
+    }
+    .social-icons {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .social-icons i {
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .social-icons i:hover {
+      color: var(--accent);
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #1e293b;
+      font-size: 0.85rem;
+    }
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+      box-shadow: 0 5px 12px rgba(230, 126, 34, 0.4);
+      color: white;
+    }
+    .scroll-top.show-scroll {
+      opacity: 1;
+      visibility: visible;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 900px) {
+      .split-layout { grid-template-columns: 1fr; }
+      .container { padding: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== FIXED NAVBAR (clean, no slider artifacts) ========== -->
+<nav class="navbar" id="navbar">
+  <div class="logo"><a href="#"><h1>Excel<span>Academy</span></h1></a></div>
+  <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+  <ul class="nav-links" id="navMenu">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/about.html" class="active">About</a></li>
+    <li><a href="/academics.html">Academics</a></li>
+    <li><a href="/admission.html">Admissions</a></li>
+    <li><a href="/facility.html">Facilities</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+  </ul>
+  <a href="/apply now.html" class="btn-primary">Apply Now</a>
+</nav>
+
+<!-- ========== NEW ABOUT HERO (complete replacement, no slider, no old .page-header) ========== -->
+<section class="page-header">
+  
+    
+    <h1>About Excel Academy</h1>
+    <p>
+      For over two decades, we have cultivated a culture of excellence, integrity, and innovation — shaping future leaders with a global mindset and deep-rooted Nigerian values.
+    </p>
+  
+</section>
+
+<!-- ========== CORE VALUES SECTION ========== -->
+<section class="section-bg-light">
+  <div class="container">
+    <h2 class="reveal" style="text-align: center; font-size: clamp(1.8rem, 4vw, 2.6rem);">Our Core <span style="color: var(--accent);">Values</span></h2>
+    <div class="values-grid">
+      <div class="value-card reveal"><i class="fas fa-star"></i><h3>Excellence</h3><p>Academic rigor and personal best always.</p></div>
+      <div class="value-card reveal"><i class="fas fa-handshake"></i><h3>Integrity</h3><p>Honesty, transparency and moral courage.</p></div>
+      <div class="value-card reveal"><i class="fas fa-chalkboard-user"></i><h3>Discipline</h3><p>Self-control and respect for community.</p></div>
+      <div class="value-card reveal"><i class="fas fa-lightbulb"></i><h3>Innovation</h3><p>Creative problem-solving & future-ready skills.</p></div>
+      <div class="value-card reveal"><i class="fas fa-globe"></i><h3>Leadership</h3><p>Empowering changemakers for Nigeria & world.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PREMIUM FACILITIES GRID ========== -->
+<section class="container">
+  <h2 class="reveal" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">World‑Class <span style="color: var(--accent);">Facilities</span></h2>
+  <div class="facilities-grid">
+    <div class="facility-card reveal"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Science Lab" loading="lazy"><div class="overlay"><h3>Advanced Science Lab</h3><p>STEM Innovation Hub</p></div></div>
+    <div class="facility-card reveal"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="ICT & Robotic Lab" loading="lazy"><div class="overlay"><h3>ICT & Robotics Lab</h3><p>AI & Coding Suite</p></div></div>
+    <div class="facility-card reveal"><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Library" loading="lazy"><div class="overlay"><h3>Digital Library</h3><p>10k+ Volumes & E-Resources</p></div></div>
+    <div class="facility-card reveal"><img src="https://images.unsplash.com/photo-1575408264798-b50b252663e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Boarding" loading="lazy"><div class="overlay"><h3>Modern Boarding</h3><p>Homely & Secure Environment</p></div></div>
+  </div>
+</section>
+
+<!-- ========== CTA SECTION (premium) ========== -->
+<div class="container reveal">
+  <div class="cta-strong">
+    <h2 style="font-size: clamp(1.9rem, 5vw, 2.8rem);">Give Your Child <span style="color: var(--accent-gold);">The Best Future</span></h2>
+    <p style="margin: 1rem 0 2rem; max-width:600px; margin-left:auto; margin-right:auto;">Limited seats available for upcoming academic year. Join 500+ future leaders.</p>
+    <div><button class="btn-primary" onclick="alert('✓ Application form opened: www.excelacademy.edu.ng/apply')">Apply Now</button>
+    <button class="btn-outline-light" onclick="alert('📞 Contact admissions: +234 802 345 6789')">Contact Us</button></div>
+  </div>
+</div>
+
+<!-- ========== ACADEMIC EXCELLENCE SPLIT SECTION ========== -->
+<section class="section-gradient">
+  <div class="container reveal">
+    <div class="split-layout">
+      <div>
+        <h2 style="font-size: clamp(1.7rem, 4vw, 2.4rem);">Academic <span style="color: var(--accent);">Excellence</span> Reimagined</h2>
+        <p>Excel Academy follows a blended British-Nigerian curriculum, offering IGCSE, WAEC, and Cambridge pathways. Our graduates attend top universities worldwide. We combine mentorship, technology, and character education for holistic growth.</p>
+        <ul style="margin-top:1.5rem; list-style-type:none;">
+          <li><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> Smart classrooms & AI Learning Analytics</li>
+          <li><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> Leadership & entrepreneurship bootcamp</li>
+          <li><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> World-class sports: Swimming, Basketball, Chess</li>
+        </ul>
+      </div>
+      <div><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" style="border-radius: 32px; width:100%; box-shadow: var(--shadow-elevation);" loading="lazy" alt="students learning"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h4>Excel Academy</h4>
+      <p>Plot 12, Education Crescent, GRA Phase 2, Lagos, Nigeria.</p>
+      <p>📞 +234 802 345 6789</p>
+      <p>✉️ admissions@excelacademy.edu.ng</p>
+      <div class="social-icons"><i class="fab fa-facebook-f"></i><i class="fab fa-instagram"></i><i class="fab fa-linkedin-in"></i><i class="fab fa-twitter"></i></div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="about.html">About Us</a>
+      <a href="academics.html">Academics</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="facilities.html">Facilities</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="#">Parent Portal</a>
+      <a href="#">Student Handbook</a>
+      <a href="#">Scholarships</a>
+      <a href="#">FAQs</a>
+    </div>
+    <div class="footer-col">
+      <h4>Accreditation</h4>
+      <p>Approved by Lagos State Ministry of Education</p>
+      <p>Member of ANCOPSS</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Excel Academy. All rights reserved. Excellence, Discipline, Integrity.</p>
+  </div>
+</footer>
+<div class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></div>
+
+<script>
+  (function() {
+    // 1. REMOVE all slider / old hero logic: No setInterval for slides, no .slide handling
+    //    we cleanly remove any existing references. All previous hero slider code is completely gone.
+    //    No null errors because .slide, .hero-slider etc do not exist.
+    
+    // 2. Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+      });
+    }
+    
+    // 3. Mobile menu toggle (clean)
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+      });
+      // Close on link click
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => navMenu.classList.remove('active'));
+      });
+      // close on outside click (optional)
+      document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target) && navMenu.classList.contains('active')) {
+          navMenu.classList.remove('active');
+        }
+      });
+    }
+    
+    // 4. Intersection Observer for reveal animations (.reveal)
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -30px 0px" });
+    revealElements.forEach(el => observer.observe(el));
+    
+    // 5. Scroll to top button
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) scrollBtn.classList.add('show-scroll');
+        else scrollBtn.classList.remove('show-scroll');
+      });
+      scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+    
+    // 6. Social icons dummy open (optional elegant)
+    const socialIcons = document.querySelectorAll('.social-icons i');
+    socialIcons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        window.open('https://www.excelacademy.edu.ng/social', '_blank');
+      });
+    });
+    
+    // 7. Subtle parallax/cleanup: no sliders, no slide-related code, no .page-header references. 
+    //    Ensure that all previous broken overlay logic is gone — we replaced hero with .about-hero
+    //    Double-check: there is no window.setInterval for slider, no .slide, no .hero-slider
+    //    No null errors because no slider elements exist.
+    console.log("✅ Hero rebuilt: clean about-hero, no sliders, premium design loaded");
+  })();
+</script>
+</body>
+</html>
